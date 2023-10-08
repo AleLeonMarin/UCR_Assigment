@@ -13,6 +13,7 @@ class Ventas:
         self.ventas = []
 
     def agregar_producto(self):
+
         codigo = input("Digite el código del producto: ")
         codigo = int(codigo)
         nombre = input("Digite el nombre del producto: ")
@@ -35,15 +36,16 @@ class Ventas:
                 print(f"Código: {producto.codigo}, Nombre: {producto.nombre}, Precio: ${producto.precio}, Cantidad en Inventario: {producto.cantidad}")
 
     def registrar_venta(self):
-        if not self.productos:
+        if len(self.productos) == 0:
             print("No hay productos disponibles para vender.")
             return
 
         print("Lista de Productos disponibles para la venta:")
         self.mostrar_productos()
-
         codigo_producto = input("Digite el código del producto a comprar: ")
+        codigo_producto = int(codigo_producto)
         cantidad_comprar = int(input("Digite la cantidad que desea comprar: "))
+        cantidad_comprar = int(cantidad_comprar)
 
         for producto in self.productos:
             if producto.codigo == codigo_producto:
@@ -78,11 +80,6 @@ class Ventas:
             print("\nEstadísticas:")
             promedio_ventas = self.calcular_promedio_ventas()
             print(f"a. Promedio de Ventas: ${promedio_ventas:.2f}")
-
-            self.mostrar_precio_mas_caro()
-            self.mostrar_precio_mas_barato()
-            self.mostrar_ventas_del_mes()
-            self.mostrar_productos_escasos()
 
     def mostrar_precio_mas_caro(self):
         precios = [producto.precio for producto in self.productos]
@@ -134,15 +131,15 @@ while True:
         print("e. Mostrar Productos Escasos")
         opcion_reporte = input("Seleccione una opción de reporte: ")
         if opcion_reporte == "a":
-            ventas_sistema.calcular_promedio_ventas
+            ventas_sistema.mostrar_estadisticas()
         elif opcion_reporte == "b":
             ventas_sistema.mostrar_precio_mas_caro()  # Llama a la función para mostrar el precio más caro
         elif opcion_reporte == "c":
-            ventas_sistema.mostrar_precio_mas_barato # Llama a la función para mostrar el precio más barato
+            ventas_sistema.mostrar_precio_mas_barato() # Llama a la función para mostrar el precio más barato
         elif opcion_reporte == "d":
-           ventas_sistema.mostrar_ventas_del_mes()
+            ventas_sistema.mostrar_ventas_del_mes()
         elif opcion_reporte == "e":
-            ventas_sistema.mostrar_productos_escasos # Llama a la función para mostrar productos escasos
+            ventas_sistema.mostrar_productos_escasos() # Llama a la función para mostrar productos escasos
         else:
             print("Opción de reporte no válida.")
     elif opcion == "4":
@@ -150,3 +147,5 @@ while True:
         exit()
     else:
         print("Opción no válida. Por favor, seleccione una opción válida.")
+
+# End Main
